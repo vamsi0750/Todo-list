@@ -13,7 +13,8 @@
         </div>
     </div>
 
-    <p-table [value]="todoList" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+    <p-table [value]="todoList" styleClass="p-datatable-gridlines" responsiveLayout="scroll" 
+    [paginator]="todoList.length > 0" [rows]="8">
         <ng-template pTemplate="header" class="grid">
             <tr>
                 <th>Id</th>
