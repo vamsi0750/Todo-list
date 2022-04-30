@@ -11,28 +11,41 @@ export class AppComponent implements OnInit {
 
   todoList: Array<Todo> = [];
   todoForm: FormGroup;
+  isEditMode: boolean;
+  currentTodoIndex: number;
+
 
   constructor(
     private fb: FormBuilder
-  ) {}
+  ) { }
   ngOnInit(): void {
-   
+
     this.todoForm = this.fb.group({
-      id:[''],
+      id: [''],
       name: ['', Validators.required],
-      date:['']
+      date: ['']
     })
   }
 
-  addTodo(){
+  addTodo() {
     this.todoForm.value.id = this.todoList.length + 1;
     this.todoForm.value.date = new Date();
     this.todoList.push(this.todoForm.value);
-    this.todoForm.reset();  
+    this.todoForm.reset();
   }
 
-  deleteTodo(ri:number){
-  this.todoList.splice(ri,1);
-        
+  deleteTodo(ri: number) {
+    this.todoList.splice(ri, 1);
   }
+  showDialog(todo: Todo, index: number) {
+    this.isEditMode = true;
+    this.todoForm.patchValue(todo);
+    this.currentTodoIndex = index;
+
+  }
+  update() {
+    this.todoList[this.currentTodoIndex].name = this.todoForm.value.name
+    this.isEditMode = false;
+  }
+
 }
