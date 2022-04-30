@@ -16,9 +16,7 @@ export class AppComponent implements OnInit {
     private fb: FormBuilder
   ) {}
   ngOnInit(): void {
-    if (localStorage.getItem("todos")?.length > 0) {
-      this.todoList = JSON.parse(localStorage.getItem("todos"))
-    }
+   
     this.todoForm = this.fb.group({
       id:[''],
       name: ['', Validators.required],
@@ -30,7 +28,11 @@ export class AppComponent implements OnInit {
     this.todoForm.value.id = this.todoList.length + 1;
     this.todoForm.value.date = new Date();
     this.todoList.push(this.todoForm.value);
-    localStorage.setItem('todos',JSON.stringify(this.todoList))
     this.todoForm.reset();  
+  }
+
+  deleteTodo(ri:number){
+  this.todoList.splice(ri,1);
+        
   }
 }

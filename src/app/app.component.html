@@ -29,14 +29,16 @@
             </tr>
 
         </ng-template>
-        <ng-template pTemplate="body" let-todo>
+        <ng-template pTemplate="body" let-todo let-ri=""rowIndex>
             <tr>
                 <td>{{todo.id}}</td>
                 <td>{{todo.name}}</td>
                 <td>{{todo.date | date : 'medium'}}</td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>
+                    <p-button icon="pi pi-trash" (onClick)="deleteTodo(ri)"></p-button>
+                </td>
             </tr>
 
         </ng-template>
