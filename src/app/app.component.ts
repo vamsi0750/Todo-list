@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
     this.todoForm = this.fb.group({
       id: [''],
       name: ['', Validators.required],
-      date: ['']
+      date: [''],
+      updatedDate:[]
     })
   }
 
@@ -45,7 +46,9 @@ export class AppComponent implements OnInit {
   }
   update() {
     this.todoList[this.currentTodoIndex].name = this.todoForm.value.name
+    this.todoList[this.currentTodoIndex].updatedDate = new Date();
     this.isEditMode = false;
+    this.todoForm.reset();
   }
 
 }

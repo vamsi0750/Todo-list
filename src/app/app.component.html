@@ -6,10 +6,9 @@
         <ng-template pTemplate="header" class="grid">
             <tr>
                 <th>Id</th>
-                <th class="col-4">Name</th>
+                <th class="col-6">Name</th>
                 <th class="col-2">Creadted Date</th>
                 <th class="col-2">Updated Date</th>
-                <th class="col-2">Status</th>
                 <th class="col-2 ">Action</th>
             </tr>
             <tr *ngIf="!todoList.length">
@@ -21,8 +20,9 @@
                 <td>{{todo.id}}</td>
                 <td>{{todo.name}}</td>
                 <td>{{todo.date | date : 'medium'}}</td>
-                <td></td>
-                <td></td>
+                <td *ngIf="todo.updatedDate">{{todo.updatedDate | date : 'medium' }}</td>
+                <td *ngIf="!todo.updatedDate">Not Updated</td>
+
                 <td class="flex justify-content-around">
                     <p-button icon="pi pi-pencil" (onClick)="showDialog(todo,ri)"></p-button>
                     <p-button icon="pi pi-trash" styleClass="p-button-danger" (onClick)="deleteTodo(ri)"></p-button>
